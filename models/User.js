@@ -40,8 +40,5 @@ const userSchema = new mongoose.Schema({
     }]
 })
 
-favorites: [{ type: Schema.Types.ObjectId, ref: "Movie", default: [] }],
-
-
 
 module.exports = new mongoose.model("User", userSchema)
