@@ -10,9 +10,5 @@ router.get('/genre/:genre', moviesController.getMoviesByGenre);
 router.get('/title/:title', moviesController.getMoviesByTitle);
 
 
-router.post('/auth/register', moviesController.registerNewUser);
-router.post('/auth/login', moviesController.loginUser);
-router.get('/auth/logout', moviesController.logoutUser);
-
 
 module.exports = router;

@@ -7,6 +7,8 @@ const createError = require('http-errors');
 /////ROUTES
 const moviesRoutes = require('./routes/movies')
 const usersRoutes = require('./routes/users')
+const authRoutes = require('./routes/auth')
+
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -36,6 +38,7 @@ mongoose.connect(process.env.DB_SERVER)
 // endpoints
 app.use('/movies', moviesRoutes);
 app.use('/users', usersRoutes);
+app.use('/auth', authRoutes)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

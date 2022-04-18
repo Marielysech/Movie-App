@@ -47,14 +47,5 @@ async function getMoviesByTitle (req, res) {
         }
     };
 
-async function registerNewUser (req, res) {
 
-}
-async function loginUser (req, res) {
-    
-}
-
-async function logoutUser (req, res) {
-
-}
 module.exports = {getAllTheMovies, getMoviesByGenre, getMoviesByTitle, registerNewUser, loginUser, logoutUser}
