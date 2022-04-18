@@ -7,13 +7,13 @@ const authModel = require('../models/User')
 
 
 async function registerNewUser (req, res) {
-    name: ,
-    username:  ,
-    email: ,
-    password: ,
-    picture: ,
-    favGenres:  ,
-    favMovies:
+    // name: ,
+    // username:  ,
+    // email: ,
+    // password: ,
+    // picture: ,
+    // favGenres:  ,
+    // favMovies:
 }
 
 

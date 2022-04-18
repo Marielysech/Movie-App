@@ -52,4 +52,3 @@ function firstLetterUpperCase(str) {
     }
     return splitStr.join(' '); 
  }
- 
