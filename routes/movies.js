@@ -6,20 +6,13 @@ const moviesController = require('../controllers/moviesController')
 
 
 router.get('/', moviesController.getAllTheMovies);
-router.get('/:genre', moviesController.getMoviesByGenre);
-router.get('/:title', moviesController.getMoviesByTitle);
+router.get('/genre/:genre', moviesController.getMoviesByGenre);
+router.get('/title/:title', moviesController.getMoviesByTitle);
 
 
+router.post('/auth/register', moviesController.registerNewUser);
+router.post('/auth/login', moviesController.loginUser);
+router.get('/auth/logout', moviesController.logoutUser);
 
-router.get('/auth', moviesController.displayAuthPage);
-
-router.post('/auth/register', moviesController.createNewUser);
-router.get('/auth/loggin', moviesController.logginUser);
-
-
-// /* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
 
 module.exports = router;
