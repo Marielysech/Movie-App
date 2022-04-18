@@ -10,7 +10,7 @@ app.use(express.static("public"))
 app.use(express.json());
 
 /******************************************************** */
-//USED THIS FUCTION TO ADD AN USER
+// USED THIS FUCTION TO ADD AN USER
 
 // async function createOneUser (req, res) {
 //     try {
