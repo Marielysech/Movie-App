@@ -20,20 +20,31 @@ async function getMovieByFilter (req,res) {
             let result = await movieModel.find({category: filterCapital}) 
             console.log(result)
                 if (result.length > 0) {
-                    return res.send(result);
+                    return res.render('indexNoAuth.ejs', {movies : result, filter : filter });
+                    // return res.send(result);
                 } const filteredMovie = await movieModel.find({title: {$regex: filterCapital }});
-                  return res.send(filteredMovie);
+                return res.render('indexNoAuth.ejs', {movies : filteredMovie, filter : filter });
+                //   return res.send(filteredMovie);
         } else if (filter < 11) {
             const filteredMovie = await movieModel.find({rating: {$gte: filter}});
-            return res.send(filteredMovie);
+            return res.render('indexNoAuth.ejs', {movies : filteredMovie, filter : filter });
+            // return res.send(filteredMovie);
         } const filteredMovie = await movieModel.find({year: filter})
-          return res.send(filteredMovie);
+            return res.render('indexNoAuth.ejs', {movies : filteredMovie, filter : filter });
+
+            // return res.send(filteredMovie);
     } catch (err) {
         console.log(err)
     }
 };
 
-module.exports = {getAllTheMovies, getMovieByFilter}
+const redirectToFilter = async (req,res) => {
+    let filter = req.body.search;
+    console.log(filter)
+    return res.redirect(`/movies/${filter}`)
+}
+
+module.exports = {getAllTheMovies, getMovieByFilter, redirectToFilter}
 
 
 function firstLetterUpperCase(str) {

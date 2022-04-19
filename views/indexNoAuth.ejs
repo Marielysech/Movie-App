@@ -8,11 +8,26 @@
     <h1>Movies</h1>
 
     <ul>
-      <% for (let i=0; i<movies.length; i++) { %>
-      <li> <img src="<%= movies[i].poster %>" alt=""></li>
-      <% } %>
-      
+        <li><a href="/auth/login">Login</a></li>
     </ul>
+
+    <form action="/movies/search">
+        <label for="search">Search bar</label>
+        <input type="text" id="search" name="search" placeholder="Search movies.." required>
+        
+        <span>
+            <button type="submit">Search</button>
+        </span>
+    </form>
+    
+
+    <div>
+      <% for (let i=0; i<movies.length; i++) { %>
+      <span> <img src="<%= movies[i].poster %>" alt=""></span>
+      <% } %>
+    </div>
+      
+
 
 
   </body>

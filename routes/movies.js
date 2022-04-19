@@ -5,6 +5,7 @@ const moviesController = require('../controllers/moviesController')
 
 
 router.get('/', moviesController.getAllTheMovies);
+router.get('/search', moviesController.redirectToFilter);
 router.get('/:filter', moviesController.getMovieByFilter)
 
 

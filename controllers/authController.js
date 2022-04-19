@@ -15,7 +15,7 @@ async function registerNewUser (req, res) {
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     
-    const user = await User.create({
+    const user = await userModel.create({
         name: req.body.name,
         username: req.body.username,
         email: req.body.email,
@@ -40,6 +40,15 @@ async function loginUser (req, res) {
     }) (req, res);
 }
 
+const renderLoginPage = async (req,res) => {
+    return res.render('login.ejs')
+}
+
+const renderRegisterPage = async (req,res) => {
+    return res.render('register.ejs')
+}
+
+
 // TODO
 async function logoutUser (req, res) {
     req.logOut()        //also passport function
@@ -55,4 +64,4 @@ async function logoutUser (req, res) {
     
 }
 
-module.exports = {registerNewUser, loginUser, logoutUser}
+module.exports = {registerNewUser, loginUser, logoutUser, renderLoginPage,renderRegisterPage}
