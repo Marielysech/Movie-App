@@ -27,12 +27,9 @@ const userSchema = new mongoose.Schema({
     },
     favGenres: [{
         type: String,
-        default: [],
-        enum: {
-            values: [ "Drama", "Action", "Urgent", null ],
-            message: 'Category is not supported'
-        } 
+        default: ""
     }],
+
     favMovies: [ {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Movie",

@@ -111,8 +111,6 @@ async function removeFromFavorites (req, res) {
     try {
         let userId = req.user._id;
         let movie = await movieModel.findOne({title: req.params.movie})
-        console.log('this is movie ID   ' + movie._id)
-
         await userModel.updateOne({_id: userId}, { $pull: { favMovies: movie._id }})
     
         } catch (err) {

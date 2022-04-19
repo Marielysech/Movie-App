@@ -16,6 +16,8 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const app = express();
 const ejs = require('ejs');
+const methodOverride = require('method-override')
+
 
 const portName = 'localhost';
 const port = process.env.PORT || 3000;
@@ -25,17 +27,33 @@ dotenv.config();
 //app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.use(methodOverride('_method'))
+
+
+//passport
+const passport = require('passport')
+const session = require('express-session')
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use(session({
+  secret: process.env.SESSION_KEY,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 60 * 60 * 1000 } //1hour
+}))
+
 //app.use(logger('dev'));
 //app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public')));
 
 
 mongoose.connect(process.env.DB_SERVER)
 .then(() => console.log("Conected to DB server"))
 .catch((err) => console.log(err));
 
-// endpoints
+// routes
 app.use('/movies', moviesRoutes);
 app.use('/users', usersRoutes);
 app.use('/auth', authRoutes)
