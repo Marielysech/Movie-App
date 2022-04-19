@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
     },
     favGenres: [{
         type: String,
-        default: ""
+        default : []
     }],
 
     favMovies: [ {

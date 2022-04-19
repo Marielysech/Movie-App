@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Movies</h1>
+
+    <ul>
+      <% for (let i=0; i<movies.length; i++) { %>
+      <li> <img src="<%= movies[i].poster %>" alt=""></li>
+      <% } %>
+      
+    </ul>
+
+
+  </body>
+</html>

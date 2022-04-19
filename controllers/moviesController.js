@@ -1,21 +1,12 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
-const movieModel = require('../models/Movie')
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"))
-
-app.use(express.json());
-
-////////////////////////////////////////////////////////
+const movieModel = require('../models/Movie');
 
 
-async function getAllTheMovies (req, res) {
+const getAllTheMovies = async (req, res) => {
     try {
-    const allTheMovies = await movieModel.find({});
-    
-    res.json(allTheMovies);
+        const allTheMovies = await movieModel.find();
+        console.log(allTheMovies)
+        // return res.send(allTheMovies)
+        return res.render('indexNoAuth.ejs', {movies : allTheMovies });
     } catch (err) {
         console.log(err)
         }
