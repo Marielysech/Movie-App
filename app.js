@@ -16,7 +16,6 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const app = express();
 const ejs = require('ejs');
-const methodOverride = require('method-override')
 
 
 const portName = 'localhost';
@@ -29,7 +28,6 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(methodOverride('_method'))
 
 
 //passport
