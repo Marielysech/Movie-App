@@ -42,7 +42,17 @@ async function loginUser (req, res) {
 
 // TODO
 async function logoutUser (req, res) {
+    req.logOut()        //also passport function
+    res.clearCookie("connect.sid", { path: "/" });
 
+    req.session.destroy(function (err) {
+        if (err) {
+        return next(err);
+        }
+        res.redirect('/users/login')
+    });
+    
+    
 }
 
 module.exports = {registerNewUser, loginUser, logoutUser}

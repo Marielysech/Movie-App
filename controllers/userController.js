@@ -43,7 +43,7 @@ async function getAllMoviesUser (req, res) {
     let user = req.user.favMovies
     const allTheMovies = await movieModel.find({category : favUserGenres});
     
-    res.send(allTheMovies);
+    return res.render('indexAuth.ejs', {movies : allTheMovies });
     } catch (err) {
         console.log(err)
         }
