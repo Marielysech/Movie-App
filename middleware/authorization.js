@@ -1,9 +1,17 @@
 
-const isAllowed = (req, res, next) => {
+const checkAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
       return next();
     }
     return res.redirect('/auth/login')
   };
 
-module.exports = isAllowed
+
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/users')
+  }
+  next()
+}
+
+module.exports = {checkAuthenticated, checkNotAuthenticated}

@@ -2,18 +2,18 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController')
-const isAllowed = require("../middleware/authorization")
+const authorization = require("../middleware/authorization")
 
 
-router.get('/', isAllowed, userController.getAllMoviesUser);
+router.get('/', authorization.checkAuthenticated, userController.getAllMoviesUser);
 
-router.get('/rating', isAllowed, userController.getMoviesByRating);
+router.get('/rating', authorization.checkAuthenticated, userController.getMoviesByRating);
 
-router.get('/favorites', isAllowed, userController.getFavorites)
+router.get('/favorites', authorization.checkAuthenticated, userController.getFavorites)
 
 router.route('/favorites/:movie')
-  .delete(isAllowed, userController.removeFromFavorites)
-  .put(isAllowed, userController.addToFavorites);
+  .delete(authorization.checkAuthenticated, userController.removeFromFavorites)
+  .put(authorization.checkAuthenticated, userController.addToFavorites);
 
 
 module.exports = router;
