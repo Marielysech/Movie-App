@@ -5,7 +5,14 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Movies</h1>
+
+    <ul>
+      <% for (let i=0; i<movies.length; i++ { %>
+      <li><%= movies[i].poster %> </li>
+      <% } %>
+    </ul>
+
+
   </body>
 </html>

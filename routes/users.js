@@ -4,16 +4,15 @@ const router = express.Router();
 const userController = require('../controllers/userController')
 
 
-router.get('/:name', userController.getAllMoviesUser);
+router.get('/', userController.getAllMoviesUser);
 
-router.get('/:name/rating', userController.getMoviesByRating);
+router.get('/rating', userController.getMoviesByRating);
 
-router.route('/:name/favorites')
-  .get(userController.getFavorites)
+router.get('/favorites', userController.getFavorites)
+
+router.route('/favorites/:movie')
+  .delete(userController.removeFromFavorites)
   .put(userController.addToFavorites);
-
-router.delete('/users/favorites/:movie', userController.removeFromFavorites);
-
 
 
 
