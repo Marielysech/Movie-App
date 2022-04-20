@@ -7,7 +7,6 @@ const collect = require('collect.js');
 
 const userModel = require('../models/User')
 const movieModel = require('../models/Movie');
-const User = require('../models/User');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"))
 
@@ -36,14 +35,12 @@ app.use(express.json());
 // /************************************************************************ */
 
 
-
-        // TODO : for all function I have to test with req.user after having implementing the auth
 async function getAllMoviesUser (req, res) {
     try {
-    let user = req.user.favMovies
-    const allTheMovies = await movieModel.find({category : favUserGenres});
+    let favUserGenres = req.user.favGenres // this is an array
+    let allMoviesFromFavGenres = await favUserGenres.map(elem => movieModel.find({category : elem}))
     
-    return res.render('indexAuth.ejs', {movies : allTheMovies });
+    return res.render('indexAuth.ejs', {movies : allMoviesFromFavGenres });
     } catch (err) {
         console.log(err)
         }
@@ -56,7 +53,7 @@ async function getMoviesByRating (req, res) {
 
     const moviesByRating = await movieModel.find().sort({'rating': -1});
   
-    res.send(moviesByRating);
+    return res.render('indexAuth.ejs', {movies : moviesByRating });
     } catch (err) {
         console.log(err)
         }
@@ -98,10 +95,10 @@ async function getFavorites (req, res) {
 
 async function addToFavorites (req, res) {
     try {
-    let userId = req.user._id;
-    let movie = await movieModel.findOne({title: req.params.movie})
+    let userId = new ObjectId("62600347c094a5192360e045");
+    let movie = await movieModel.findOne({title: "inception"})
     await userModel.updateOne({_id: userId}, { $push: { favMovies: movie._id }})
-
+        console.log('HERE LOOK' + movie)
     } catch (err) {
         console.log(err)
         }
@@ -122,11 +119,12 @@ async function removeFromFavorites (req, res) {
 module.exports = {getAllMoviesUser, getMoviesByRating, getFavorites, addToFavorites, removeFromFavorites}
 
 
-// async function accessDB() {
-//     let user = await userModel.find({})
-//     console.log('THIS IS USERS' + user)    
-// }
+async function accessDB() {
+    let user = await userModel.find({})
+    console.log('THIS IS USERS' + user)    
+}
 
-// accessDB()
+accessDB()
+addToFavorites()
 // removeFromFavorites()
-// accessDB()
+accessDB()

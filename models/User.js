@@ -6,11 +6,6 @@ const userSchema = new mongoose.Schema({
         required: true,
         message : "Please enter you name"
     },
-    username: {
-        type: String,
-        unique: true,
-        message : "This username is already taken",
-    },
     email:{
         type: String,
         unique: true,
@@ -38,4 +33,4 @@ const userSchema = new mongoose.Schema({
 })
 
 
-module.exports = new mongoose.model("User", userSchema)
+module.exports = new mongoose.model("theUser", userSchema)
