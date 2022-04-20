@@ -74,7 +74,6 @@ async function getMoviesByRating (req, res) {
 // };
 
 
-
 async function getFavorites (req, res) {
     try {
         let userID = req.user._id;

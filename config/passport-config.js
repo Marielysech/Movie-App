@@ -8,7 +8,7 @@ const userModel = require('../models/User')
 function initialize(passport) {
     const customFields = {
       usernameField: "email",
-      passwordField: "password",
+      passwordField: "password"
     }
 
 
@@ -33,15 +33,16 @@ const authenticateUser = async (email, password, done) => {
 passport.use(new LocalStrategy(customFields, authenticateUser))
 
 
-passport.serializeUser((user, done) => {
-    return done(null, user.id)
-  })
 
-passport.deserializeUser(function (id, done) {
-    userModel.findById(id, function (err, user) {
-        done(err, user);
-    });
-  });
-} 
+
+passport.serializeUser((user, done) => {
+  return done(null, user.id)
+})
+passport.deserializeUser(async (id, done) => {
+  const user = await User.findOne({id: id});
+  return done(null, user)
+})
+
+}
 
 module.exports = initialize
