@@ -77,7 +77,10 @@ async function getFavorites (req, res) {
     try {
         let userID = req.user._id;
         const favUserMovies = await userModel.find({_id: userID}, {favMovies: 1}).populate('favMovies');
-        res.send(favUserMovies);
+        if (favUserMovies.length > 1) {
+            return res.render('favorites.ejs', {movies : favUserMovies }); 
+        } else res.send('You have not favorites yet !')
+    
     } catch (err) {
         console.log(err)
         }
@@ -96,8 +99,8 @@ async function getFavorites (req, res) {
 
 async function addToFavorites (req, res) {
     try {
-    let userId = new ObjectId("62600347c094a5192360e045");
-    let movie = await movieModel.findOne({title: "inception"})
+    let userId = req.user._id;
+    let movie = await movieModel.findOne({title: req.params.movie})
     await userModel.updateOne({_id: userId}, { $push: { favMovies: movie._id }})
         console.log('HERE LOOK' + movie)
     } catch (err) {

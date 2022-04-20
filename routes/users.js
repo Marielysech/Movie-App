@@ -11,9 +11,9 @@ router.get('/rating', authorization.checkAuthenticated, userController.getMovies
 
 router.get('/favorites', authorization.checkAuthenticated, userController.getFavorites)
 
-router.route('/favorites/:movie')
-  .delete(authorization.checkAuthenticated, userController.removeFromFavorites)
-  .put(authorization.checkAuthenticated, userController.addToFavorites);
+router.post('/favorites/:movie', authorization.checkAuthenticated, userController.addToFavorites)
+
+router.post('/removefavorites/:movie', authorization.checkAuthenticated, userController.removeFromFavorites)
 
 router.post('/search', authorization.checkAuthenticated,  userController.redirectToFilter);
 router.get('/:filter', authorization.checkAuthenticated, userController.getMovieByFilter)
