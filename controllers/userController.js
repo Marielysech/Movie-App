@@ -76,7 +76,8 @@ async function getMoviesByRating (req, res) {
 async function getFavorites (req, res) {
     try {
         let userID = req.user._id;
-        const favUserMovies = await userModel.findOne({_id: userID}).populate('favMovies');
+        const user = await userModel.findOne({_id: userID}).populate('favMovies');
+        const favUserMovies = user.favMovies
         console.log(favUserMovies)
         // if (favUserMovies.length > 1) {
             return res.render('favorites.ejs', {movies : favUserMovies }); 
@@ -116,6 +117,7 @@ async function removeFromFavorites (req, res) {
         let userId = req.user._id;
         let movie = await movieModel.findOne({title: req.params.movie})
         await userModel.updateOne({_id: userId}, { $pull: { favMovies: movie._id }})
+        res.redirect('/users/favorites')
     
         } catch (err) {
             console.log(err)
