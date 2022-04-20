@@ -15,5 +15,8 @@ router.route('/favorites/:movie')
   .delete(authorization.checkAuthenticated, userController.removeFromFavorites)
   .put(authorization.checkAuthenticated, userController.addToFavorites);
 
+router.post('/search', authorization.checkAuthenticated,  userController.redirectToFilter);
+router.get('/:filter', authorization.checkAuthenticated, userController.getMovieByFilter)
+
 
 module.exports = router;
