@@ -7,6 +7,7 @@ const authorization = require("../middleware/authorization")
 
 router.get('/', authorization.checkAuthenticated, userController.getAllMoviesUser);
 
+router.get('/:movie', authorization.checkAuthenticated, userController.getMoreInfo);
 router.get('/rating', authorization.checkAuthenticated, userController.getMoviesByRating);
 
 router.get('/favorites', authorization.checkAuthenticated, userController.getFavorites)
