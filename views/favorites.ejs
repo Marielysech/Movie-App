@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>logged in</title>
+    <title>logged in - favorites</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
@@ -13,7 +13,7 @@
 </ul>
 
 <a href="/users/rating"><button>Filter Movies by rating</button></a>
-<a href="/users/favorites"><button>Go to favorites</button></a>
+<!-- <a href="/users/favorites"><button>Go to favorites</button></a> -->
 
 <form action="/users/search" method="POST">
     <label for="search">Search bar</label>
@@ -24,16 +24,19 @@
     </span>
 </form>
 
+
 <div>
   <% for (let i=0; i<movies.length; i++) { %>
-    <span>
-      <span> 
-        <img src="<%= movies[i].poster %>" alt="">
-        <form action="/users/favorites/<%= movies[i].title %>" method="POST">
-          <button type="submit">Add to favorites</button>
-        </form> 
-      </span>
-    </span>
- <% } %>
+  <span> 
+      <img src="<%= movies[i].poster %>" alt="">
+      <form action="/users/removefavorites/<%= movies[i].title %>" method="POST">
+        <button type="submit">remove from favorites</button>
+      </form> 
+ </span>
+  
+  <% } %>
+</div>
+  
+
   </body>
 </html>
