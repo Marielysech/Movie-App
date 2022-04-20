@@ -9,6 +9,12 @@ const passport = require('passport')
 
 initialize(passport);
 
+const renderIndexAuth = async (req, res) => {
+    res.render('indexAuth.ejs')
+}
+
+
+
 
 async function registerNewUser (req, res) { 
     try {
@@ -64,4 +70,4 @@ async function logoutUser (req, res) {
     
 }
 
-module.exports = {registerNewUser, loginUser, logoutUser, renderLoginPage,renderRegisterPage}
+module.exports = {registerNewUser, loginUser, logoutUser, renderLoginPage,renderRegisterPage, renderIndexAuth}
