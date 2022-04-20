@@ -79,9 +79,9 @@ async function getFavorites (req, res) {
         const user = await userModel.findOne({_id: userID}).populate('favMovies');
         const favUserMovies = user.favMovies
         console.log(favUserMovies)
-        // if (favUserMovies.length > 1) {
+        if (favUserMovies.length >0 ) {
             return res.render('favorites.ejs', {movies : favUserMovies }); 
-        // } else res.send('You have not favorites yet !')
+        } else res.send('You have not favorites yet !')
     
     } catch (err) {
         console.log(err)
