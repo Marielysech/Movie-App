@@ -28,8 +28,11 @@
   <% for (let i=0; i<movies.length; i++) { %>
     <span>
       <span> 
+        <a href="/users/<%=movies[i].title%>">
         <img src="<%= movies[i].poster %>" alt="">
-        <form action="/users/favorites/<%= movies[i].title %>" method="post">
+
+      </a>
+        <form action="/users/favorites/<%= movies[i].title %>" method="POST">
           <button type="submit">Add to favorites</button>
           </form>
       </span>

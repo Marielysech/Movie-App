@@ -48,7 +48,14 @@ async function getAllMoviesUser (req, res) {
         }
     };
     
-
+async function getMoreInfo (req, res) {
+    try {
+        const movie = await movieModel.findOne({title: req.params.movie });
+            res.render('oneMovieInfo.ejs', {movie : movie})
+        } catch (err) {
+            console.log(err)
+            }
+}
 
 async function getMoviesByRating (req, res) {
     try {
@@ -156,9 +163,11 @@ const redirectToFilter = async (req,res) => {
     console.log(filter)
     return res.redirect(`/users/${filter}`)
 }        
-        
+       
 
-module.exports = {getAllMoviesUser, getMoviesByRating, getFavorites, addToFavorites, removeFromFavorites, getMovieByFilter,redirectToFilter }
+
+
+module.exports = {getAllMoviesUser, getMoviesByRating, getFavorites, addToFavorites, removeFromFavorites, getMovieByFilter,redirectToFilter, getMoreInfo }
 
 function firstLetterUpperCase(str) {
     let splitStr = str.toLowerCase().split(' ');
