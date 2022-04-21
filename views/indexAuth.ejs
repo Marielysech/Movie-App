@@ -30,12 +30,16 @@
       <span> 
         <a href="/users/<%=movies[i].title%>">
         <img src="<%= movies[i].poster %>" alt="">
+
       </a>
         <form action="/users/favorites/<%= movies[i].title %>" method="POST">
           <button type="submit">Add to favorites</button>
-        </form> 
+          </form>
       </span>
     </span>
  <% } %>
   </body>
 </html>
+
+
+  

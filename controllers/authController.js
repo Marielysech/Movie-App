@@ -38,7 +38,7 @@ async function registerNewUser (req, res) {
 async function loginUser (req, res) {
     passport.authenticate('local',{
         successRedirect: '/users',
-        failureRedirect: '/login'
+        failureRedirect: '/auth/login'
     }) (req, res);
 }
 

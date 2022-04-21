@@ -28,7 +28,8 @@ const userSchema = new mongoose.Schema({
     favMovies: [ {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Movie",
-        default : []
+        default : [],
+        unique: true
     }]
 })
 
