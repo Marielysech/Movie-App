@@ -110,9 +110,13 @@ async function addToFavorites (req, res) {
     try {
     let userId = req.user._id;
     let movie = await movieModel.findOne({title: req.params.movie})
-    await userModel.updateOne({_id: userId}, { $push: { favMovies: movie._id }})
-    console.log(req.user)   
-    res.redirect('/users')
+    let favmovie = await userModel.findOne({favMovies : movie._id})
+    if(favmovie) {
+        return res.redirect('/users')
+    }
+        await userModel.updateOne({_id: userId}, { $push: { favMovies: movie._id }})
+        console.log(req.user)   
+        return res.redirect('/users')
     } catch (err) {
         console.log(err)
         }
